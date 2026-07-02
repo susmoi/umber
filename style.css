@@ -150,6 +150,37 @@ gap: 2.5rem;
 margin-top: 1rem;
 }
 
+/* Calendly Rectangle Button Style */
+.calendly-anchor {
+text-decoration: none;
+display: inline-block;
+}
+
+.calendly-btn {
+display: inline-block;
+font-family: 'Rubik', sans-serif;
+font-weight: 500;
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+background-color: #111111;
+color: #ffffff;
+border: none;
+border-radius: 2px;
+padding: 1.1rem 2.2rem;
+cursor: pointer;
+transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.calendly-btn:hover {
+background-color: #333333; /* Lighter black on hover */
+}
+
+.calendly-btn:active {
+background-color: #444444; /* Even lighter black on click /
+transform: scale(0.98); / Visual responsive feedback */
+}
+
 /* Typographic Coastline-fallback Link Styles */
 .coastline-link {
 display: inline-block;

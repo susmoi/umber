@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Umber Consulting</title>
+    
+    <!-- 8-Pointed Star Favicon Data URI -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='15' y='15' width='70' height='70' fill='%23111111'/%3E%3Crect x='15' y='15' width='70' height='70' fill='%23111111' transform='rotate(45 50 50)'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Playfair (Serif) & Rubik (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #111111;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Header / Navigation */
+        header {
+            padding: 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #111111;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #111111;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #f70000;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #f70000;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Divider Line */
+        .divider {
+            height: 1px;
+            background-color: #e5e5e5;
+            margin: 4rem 0;
+        }
+
+        /* Section Headings Styling */
+        .section-header-display {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            color: #111111;
+        }
+
+        /* About / Profile Details Layout */
+        .bio-section {
+            padding: 2rem 0 8rem 0;
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .bio-profile-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .avatar-frame {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1;
+            background-color: #f3f3f3;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+
+        .avatar-svg {
+            width: 100%;
+            height: 100%;
+            color: #111111;
+            opacity: 0.85;
+        }
+
+        /* Star icon within SVG */
+        .avatar-svg .accent-star {
+            color: #f70000;
+        }
+
+        .bio-name {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #111111;
+            line-height: 1.2;
+        }
+
+        .bio-title {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666666;
+            margin-top: -0.5rem;
+        }
+
+        .bio-narrative {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+            letter-spacing: 0.01em;
+            color: #222222;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .bio-narrative p {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SVG Symbol Assets -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <g id="eight-pointed-star">
+            <rect x="15" y="15" width="70" height="70" fill="currentColor" />
+            <rect x="15" y="15" width="70" height="70" fill="currentColor" transform="rotate(45 50 50)" />
+        </g>
+    </svg>
+
+    <div class="container">
+        
+        <header>
+            <a href="index.html" class="logo">Umber</a>
+            <nav class="nav-links">
+                <a href="about.html" class="nav-link active">About</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="bio-section">
+                <h2 class="section-header-display">About</h2>
+                
+                <div class="bio-grid">
+                    <div class="bio-profile-card">
+                        <div class="avatar-frame">
+                            <!-- Custom elegant abstract graphic representing a woman executive designer -->
+                            <svg class="avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="90" stroke="#111111" stroke-width="1" stroke-dasharray="6,4"/>
+                                <path d="M60 145 C60 115, 140 115, 140 145" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="100" cy="85" r="24" stroke="#111111" stroke-width="2"/>
+                                <path d="M100 25 L100 45" stroke="#111111" stroke-width="1"/>
+                                <path d="M100 155 L100 175" stroke="#111111" stroke-width="1"/>
+                                <use href="#eight-pointed-star" x="85" y="5" width="30" height="30" class="accent-star" style="color: #f70000;"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="bio-name">Liz Brown</h3>
+                            <p class="bio-title">Founder & Lead Coach</p>
+                        </div>
+                    </div>
+
+                    <div class="bio-narrative">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integrity, craft, and systemic action define the baseline of executive design leadership. Strategic navigation in the tech industry requires moving beyond standard UI workflows to cultivate absolute execution authority.
+                        </p>
+                        <p>
+                            Morbi convallis hendrerit magna, nec feugiat justo posuere eget. Sed lacinia finibus ex, a finibus eros pellentesque nec. Cras id congue nisi, eu sodales arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+                        </p>
+                        <p>
+                            Umber Consulting was established to empower women in UX design and research with direct, tactical blueprints to claim structural leverage, command space, and rewrite their authority within modern engineering organizations.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

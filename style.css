@@ -277,7 +277,7 @@ line-height: 1.4;
 
 /* Infinite Horizontal Logo Ticker */
 .logo-ticker-container {
-width: 100vw;
+width: max-content;
 position: relative;
 left: 50%;
 right: 50%;
@@ -290,14 +290,12 @@ display: flex;
 .logo-ticker-track {
 display: flex;
 width: calc(150px * 16 + 3rem * 16);
-animation: slowScroll 35s linear infinite;
+animation: slowScroll 25s linear infinite;
 gap: 3rem;
 padding: 1rem 0;
+padding-right: 3rem;
 }
 
-.logo-ticker-container:hover .logo-ticker-track {
-animation-play-state: paused;
-}
 
 .logo-box {
 width: 150px;
@@ -306,17 +304,10 @@ flex-shrink: 0;
 display: flex;
 align-items: center;
 justify-content: center;
-background-color: #f7f7f7;
-border: 1px solid #e9e9e9;
-filter: grayscale(100%);
 opacity: 0.6;
 transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
-.logo-box:hover {
-filter: grayscale(0%);
-opacity: 0.9;
-}
 
 .logo-svg {
 width: 70%;
@@ -325,7 +316,7 @@ height: 70%;
 
 @keyframes slowScroll {
 0% { transform: translateX(0); }
-100% { transform: translateX(calc(-150px * 8 - 3rem * 8)); }
+100% { transform: translateX(-50%); }
 }
 
 /* STREAMING_CHUNK: Styling editorial layout and manifesto layout grids /

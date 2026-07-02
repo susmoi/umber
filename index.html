@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Coaching for Women</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='15' y='15' width='70' height='70' fill='%23111111'/%3E%3Crect x='15' y='15' width='70' height='70' fill='%23111111' transform='rotate(45 50 50)'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #111111;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        /* Header / Logo */
+        header {
+            padding: 3rem 0;
+        }
+
+        .logo {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #111111;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
+        }
+
+        .display-message {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 800; 
+            font-size: clamp(2.8rem, 7vw, 5.5rem); 
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            max-width: 1150px;
+        }
+
+        .sub-headline {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.4rem, 2.8vw, 2.2rem); 
+            color: #333333;
+            margin-bottom: 3.5rem;
+            max-width: 850px;
+            line-height: 1.3;
+        }
+
+        /* Interactive Particle CTA Container */
+        .cta-container {
+            position: relative;
+            width: fit-content;
+            display: inline-block;
+        }
+
+        /* CTA Button using Rubik */
+        .cta-button {
+            display: inline-block;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            background-color: #111111;
+            color: #ffffff;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            position: relative;
+            z-index: 2; 
+        }
+
+        .cta-button:hover {
+            background-color: #333333;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        /* Global Boundary Star Canvas Layer */
+        .star-canvas {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            right: -100px;
+            bottom: -400px;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Individual falling star elements */
+        .falling-star {
+            position: absolute;
+            color: #111111;
+            opacity: 0;
+            pointer-events: none;
+            transform-origin: center;
+        }
+
+        /* Divider Line */
+        .divider {
+            height: 1px;
+            background-color: #e5e5e5;
+            margin: 4rem 0;
+        }
+
+        /* Capabilities Section */
+        .capabilities-section {
+            padding: 2rem 0;
+        }
+
+        .capabilities-header {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            color: #111111;
+            margin-bottom: 2.5rem;
+            line-height: 1.3;
+        }
+
+        .capabilities-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 1.5vw, 20px); 
+        }
+
+        .capabilities-list li {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+            color: #222222;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .star-icon {
+            width: clamp(14px, 1.5vw, 18px);
+            height: clamp(14px, 1.5vw, 18px);
+            flex-shrink: 0;
+        }
+
+        /* Credentials Section */
+        .credentials-section {
+            padding: 2rem 0;
+        }
+
+        .credentials-header {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: #444444;
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            line-height: 1.4;
+        }
+
+        /* Infinite Horizontal Logo Ticker */
+        .logo-ticker-container {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .logo-ticker-track {
+            display: flex;
+            width: calc(150px * 16 + 3rem * 16);
+            animation: slowScroll 35s linear infinite;
+            gap: 3rem;
+            padding: 1rem 0;
+        }
+
+        .logo-ticker-container:hover .logo-ticker-track {
+            animation-play-state: paused;
+        }
+
+        .logo-box {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f7f7f7;
+            border: 1px solid #e9e9e9;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: opacity 0.2s ease, filter 0.2s ease;
+        }
+
+        .logo-box:hover {
+            filter: grayscale(0%);
+            opacity: 0.9;
+        }
+
+        .logo-svg {
+            width: 70%;
+            height: 70%;
+        }
+
+        @keyframes slowScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-150px * 8 - 3rem * 8)); }
+        }
+
+        /* Enhanced Manifesto Style About Section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 6rem;
+            padding-top: 4rem;
+            padding-bottom: 8rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding-bottom: 4rem;
+            }
+        }
+
+        /* Editorial Left Column Styles */
+        .manifesto-lead {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.25;
+            color: #111111;
+            position: sticky;
+            top: 4rem;
+        }
+
+        .manifesto-lead span {
+            display: block;
+            margin-top: 1.5rem;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.4;
+        }
+
+        /* Narrative Column Styles */
+        .about-content {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 300;
+            font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+            letter-spacing: 0.01em;
+            color: #222222;
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+        }
+
+        .framework-block {
+            margin: 2.5rem 0;
+            padding-left: 1.5rem;
+            border-left: 1px solid #111111;
+        }
+
+        .framework-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: #111111;
+        }
+
+        .framework-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .framework-list li {
+            position: relative;
+        }
+
+        .framework-list.first-list li::before {
+            content: "→";
+            position: absolute;
+            left: -1.2rem;
+            color: #111111;
+        }
+
+        .framework-list.last-list li::before {
+            content: "×";
+            position: absolute;
+            left: -1.2rem;
+            color: #888888;
+            font-weight: 400;
+        }
+
+        /* Order of Consequences Styling */
+        .consequences-container {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .consequence-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .consequence-num {
+            font-family: 'Playfair', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.8rem;
+            line-height: 1;
+            color: #111111;
+            width: 45px;
+        }
+
+        .consequence-text {
+            font-weight: 300;
+            line-height: 1.4;
+            padding-top: 0.2rem;
+        }
+
+        .consequence-card.threat .consequence-num,
+        .consequence-card.threat .consequence-text {
+            font-weight: 700;
+        }
+
+        /* Progressive Read More Engine */
+        .read-more-target {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease;
+        }
+
+        #read-more-toggle {
+            display: none;
+        }
+
+        #read-more-toggle:checked ~ .read-more-target {
+            max-height: 1500px;
+            opacity: 1;
+            transition: max-height 0.8s cubic-bezier(1, 0, 1, 0), opacity 0.6s ease;
+        }
+
+        .read-more-trigger {
+            display: inline-block;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #111111;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid #111111;
+            padding-bottom: 2px;
+        }
+
+        #read-more-toggle:checked ~ .read-more-trigger {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <g id="eight-pointed-star">
+            <rect x="15" y="15" width="70" height="70" fill="currentColor" />
+            <rect x="15" y="15" width="70" height="70" fill="currentColor" transform="rotate(45 50 50)" />
+        </g>
+    </svg>
+
+    <div class="container">
+        
+        <header>
+            <a href="#" class="logo">Strategic Logic</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1 class="display-message">
+                    UX coaching for women in the male dominated tech industry.
+                </h1>
+                <p class="sub-headline">
+                    First coaching session is free. Every session after that is $20 forever.
+                </p>
+                
+                <div class="cta-container" id="cta-wrapper">
+                    <a href="https://zoom.us" target="_blank" class="cta-button" id="cta-btn">Book Free Session</a>
+                    <div class="star-canvas" id="star-canvas"></div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section class="capabilities-section">
+                <h2 class="capabilities-header">What we can work on together to accelerate your impact:</h2>
+                <ul class="capabilities-list">
+                    <li>
+                        <svg class="star-icon" viewBox="0 0 100 100"><use href="#eight-pointed-star"/></svg>
+                        UX Process
+                    </li>
+                    <li>
+                        <svg class="star-icon" viewBox="0 0 100 100"><use href="#eight-pointed-star"/></svg>
+                        Deliverables
+                    </li>
+                    <li>
+                        <svg class="star-icon" viewBox="0 0 100 100"><use href="#eight-pointed-star"/></svg>
+                        Stakeholder communication
+                    </li>
+                    <li>
+                        <svg class="star-icon" viewBox="0 0 100 100"><use href="#eight-pointed-star"/></svg>
+                        Portfolios
+                    </li>
+                    <li>
+                        <svg class="star-icon" viewBox="0 0 100 100"><use href="#eight-pointed-star"/></svg>
+                        Interviewing
+                    </li>
+                </ul>
+            </section>
+
+            <div class="divider"></div>
+
+            <section class="credentials-section">
+                <h2 class="credentials-header">
+                    I’ve worked with male Board Chairmen, CEOs, Partners, VPs, Directors, PMs, Devs, and UX professionals at these companies:
+                </h2>
+                
+                <div class="logo-ticker-container">
+                    <div class="logo-ticker-track">
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">ALPHA</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">MATRIX</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">VERTEX</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">CONSOLE</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">AXIOM</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">NODE.CO</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">VECTOR</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">SYNTAX</text></svg></div>
+                        
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">ALPHA</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">MATRIX</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">VERTEX</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">CONSOLE</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">AXIOM</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">NODE.CO</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">VECTOR</text></svg></div>
+                        <div class="logo-box"><svg class="logo-svg" viewBox="0 0 100 40"><text x="50" y="25" font-family="'Rubik', sans-serif" font-weight="700" font-size="16" fill="#111" text-anchor="middle">SYNTAX</text></svg></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider"></div>
+
+            <section class="about-section">
+                <div class="manifesto-lead">
+                    Tech is inherently cold. It needs to be molded by a human-centered designer.
+                    <span>This is a human-first perspective to design.</span>
+                </div>
+
+                <div class="about-content">
+                    <input type="checkbox" id="read-more-toggle">
+                    
+                    <p>
+                        Tech is predominantly male. A woman's perspective is routinely sidelined to the detriment of us all. Tech needs to be molded by women. This is my women-first perspective to practicing UX Design and UX Research in the tech industry.
+                    </p>
+                    <p>
+                        I believe the software and environments we design for people should be intuitive, usable, and delightful. I have worked at fast-paced startups, and I have consulted with Fortune 50 companies, MAANG companies, and publicly traded tech corporations. 
+                    </p>
+                    <p>
+                        My perspective is built for UX professionals who want to deeply mature their craft and practice while navigating a male-dominated environment.
+                    </p>
+
+                    <div class="read-more-target">
+                        <p>
+                            In tech, men control the pace of work. The woman-first lens flips this paradigm completely. It requires changing the default behavior mechanics of how you show up in digital spaces daily.
+                        </p>
+
+                        <div class="framework-block">
+                            <div class="framework-title">Be Woman First To:</div>
+                            <ul class="framework-list first-list">
+                                <li>Enter the meeting room</li>
+                                <li>Turn on your camera</li>
+                                <li>Respond in lines of communication</li>
+                                <li>Push the execution update</li>
+                                <li>Summarize the alignment</li>
+                            </ul>
+
+                            <div class="framework-title">Be Woman Last To:</div>
+                            <ul class="framework-list last-list">
+                                <li>Organize secondary administrative tasks</li>
+                                <li>Remind others of basic responsibilities</li>
+                                <li>Clean up administrative messes</li>
+                            </ul>
+                        </div>
+
+                        <p>
+                            This means forgoing default subordinate roles in favor of taking absolute control of the pace of work.
+                        </p>
+
+                        <div class="consequences-container">
+                            <div class="consequence-card">
+                                <div class="consequence-num">1st</div>
+                                <div class="consequence-text">Order Consequence: You will instantly become significantly more valuable to your immediate team.</div>
+                            </div>
+                            <div class="consequence-card">
+                                <div class="consequence-num">2nd</div>
+                                <div class="consequence-text">Order Consequence: You will secure actual organizational power and leverage.</div>
+                            </div>
+                            <div class="consequence-card threat">
+                                <div class="consequence-num">3rd</div>
+                                <div class="consequence-text">Order Consequence: You will become a direct threat to the male-tech-complex.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <label for="read-more-toggle" class="read-more-trigger">[ Read Manifesto Playbook ]</label>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById('cta-wrapper');
+        const btn = document.getElementById('cta-btn');
+        const canvas = document.getElementById('star-canvas');
+        let isHovered = false;
+        let spawnInterval = null;
+
+        const SPAWN_RATE = 25; 
+        const MAX_STARS = 100;  
+
+        function createFallingStar() {
+            if (!isHovered || canvas.children.length > MAX_STARS) return;
+
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
+            const btnLeft = btn.offsetLeft;
+            const btnTop = btn.offsetTop;
+
+            const canvasOffsetX = 100; 
+            const canvasOffsetY = 100;  
+
+            const star = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            star.setAttribute("viewBox", "0 0 100 100");
+            star.classList.add("falling-star");
+            star.innerHTML = '<use href="#eight-pointed-star"/>';
+
+            const sizes = [5, 8, 12, 16, 22]; 
+            const chosenSize = sizes[Math.floor(Math.random() * sizes.length)];
+            star.style.width = `${chosenSize}px`;
+            star.style.height = `${chosenSize}px`;
+
+            const sideDistribution = Math.random();
+            let spawnX, spawnY;
+            let velocityX = 0;
+            let velocityY = Math.random() * 0.6 + 0.3; 
+
+            if (sideDistribution < 0.4) {
+                spawnX = canvasOffsetX + btnLeft + (Math.random() * btnWidth);
+                spawnY = canvasOffsetY + btnTop + btnHeight;
+                velocityX = (Math.random() - 0.5) * 0.6; 
+            } else if (sideDistribution < 0.7) {
+                spawnX = canvasOffsetX + btnLeft - 6; 
+                spawnY = canvasOffsetY + btnTop + (Math.random() * btnHeight * 0.8); 
+                velocityX = -(Math.random() * 1.5 + 0.8); 
+                velocityY = -(Math.random() * 0.4 + 0.1); 
+            } else {
+                spawnX = canvasOffsetX + btnLeft + btnWidth + 6; 
+                spawnY = canvasOffsetY + btnTop + (Math.random() * btnHeight * 0.8);
+                velocityX = (Math.random() * 1.5 + 0.8); 
+                velocityY = -(Math.random() * 0.4 + 0.1); 
+            }
+
+            star.style.left = `${spawnX}px`;
+            star.style.top = `${spawnY}px`;
+            canvas.appendChild(star);
+
+            let currentX = 0;
+            let currentY = 0;
+            const gravity = 0.035; 
+            let opacity = Math.random() * 0.4 + 0.5; 
+            let rotation = Math.random() * 360;
+            const rotationSpeed = (Math.random() - 0.5) * 1.2; 
+
+            function animate() {
+                velocityY += gravity; 
+                currentX += velocityX;
+                currentY += velocityY;
+                rotation += rotationSpeed;
+
+                if (currentY > 180) {
+                    opacity -= 0.02;
+                } else if (opacity < 0.95) {
+                    opacity += 0.08;
+                }
+
+                star.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotation}deg)`;
+                star.style.opacity = opacity;
+
+                if (currentY < canvas.offsetHeight && opacity > 0 && (spawnX + currentX) > 0 && (spawnX + currentX) < canvas.offsetWidth) {
+                    requestAnimationFrame(animate);
+                } else {
+                    star.remove();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        wrapper.addEventListener('mouseenter', () => {
+            isHovered = true;
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createFallingStar, Math.random() * 100);
+            }
+            spawnInterval = setInterval(createFallingStar, SPAWN_RATE);
+        });
+
+        wrapper.addEventListener('mouseleave', () => {
+            isHovered = false;
+            clearInterval(spawnInterval);
+        });
+    </script>
+</body>
+</html>

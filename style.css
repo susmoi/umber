@@ -1,0 +1,550 @@
+{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+background-color: #fcfcfc;
+color: #111111;
+font-family: 'Rubik', sans-serif;
+font-weight: 300;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* STREAMING_CHUNK: Setting up reusable grid container dimensions /
+/ Layout Container */
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 4rem;
+}
+
+@media (max-width: 768px) {
+.container {
+padding: 0 1.5rem;
+}
+}
+
+ /* Header / Navigation */
+        header {
+                        position: sticky;
+            top: 0;
+
+            background-color: rgba(252, 252, 252, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 2rem 0;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+            transition: padding 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #111111;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: #111111;
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #f70000;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .nav-link:hover {
+            color: #f70000;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+/* Divider Line */
+.divider {
+height: 1px;
+background-color: #e5e5e5;
+margin: 4rem 0;
+}
+
+/* STREAMING_CHUNK: Styling homepage hero components and headline markers /
+/ Hero Section */
+.hero {
+min-height: 70vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 4rem 0;
+}
+
+.display-message {
+font-family: 'Rubik', sans-serif;
+font-weight: 800;
+font-size: clamp(2.8rem, 7vw, 5.5rem);
+line-height: 1.05;
+letter-spacing: -0.03em;
+text-transform: uppercase;
+margin-bottom: 2.5rem;
+max-width: 1150px;
+}
+
+.highlight-red {
+color: #f70000;
+}
+
+.sub-headline {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 400;
+font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+color: #333333;
+margin-bottom: 3.5rem;
+max-width: 850px;
+line-height: 1.3;
+}
+
+/* STREAMING_CHUNK: Configuring typographic links for premium brand look /
+/ Inline CTA Links Block */
+.cta-links-wrapper {
+display: flex;
+flex-wrap: wrap;
+gap: 2.5rem;
+margin-top: 1rem;
+}
+
+/* Typographic Coastline-fallback Link Styles */
+.coastline-link {
+display: inline-block;
+font-family: 'Coastline', 'Playfair', serif;
+font-style: italic;
+font-weight: 600;
+font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+color: #111111;
+text-decoration: underline;
+text-underline-offset: 6px;
+text-decoration-thickness: 1px;
+cursor: pointer;
+border: none;
+background: none;
+padding: 0;
+transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.coastline-link:hover,
+.coastline-link:focus {
+color: #666666;
+text-decoration-color: #666666;
+outline: none;
+}
+
+/* STREAMING_CHUNK: Defining structural layout headers and layout services /
+/ Section Headings Styling */
+.section-header-display {
+font-family: 'Rubik', sans-serif;
+font-weight: 800;
+font-size: 20px;
+line-height: 1.2;
+letter-spacing: -0.01em;
+text-transform: uppercase;
+margin-bottom: 0.75rem;
+color: #111111;
+}
+
+/* Capabilities Section */
+.capabilities-section {
+padding: 2rem 0;
+scroll-margin-top: 4rem;
+}
+
+.capabilities-subheader {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 400;
+font-size: clamp(1.4rem, 2.5vw, 2rem);
+color: #111111;
+margin-bottom: 2.5rem;
+line-height: 1.3;
+}
+
+.capabilities-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: clamp(12px, 1.5vw, 20px);
+}
+
+.capabilities-list li {
+font-family: 'Rubik', sans-serif;
+font-weight: 300;
+font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+color: #222222;
+display: flex;
+align-items: center;
+gap: 1.2rem;
+}
+
+.star-icon {
+width: clamp(14px, 1.5vw, 18px);
+height: clamp(14px, 1.5vw, 18px);
+flex-shrink: 0;
+}
+
+/* STREAMING_CHUNK: Formatting infinite marquee client logo loop and frames /
+/ Credentials Section */
+.credentials-section {
+padding: 2rem 0;
+}
+
+.credentials-subheader {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 400;
+font-size: clamp(1.1rem, 2vw, 1.5rem);
+color: #444444;
+margin-bottom: 2.5rem;
+max-width: 900px;
+line-height: 1.4;
+}
+
+/* Infinite Horizontal Logo Ticker */
+.logo-ticker-container {
+width: 100vw;
+position: relative;
+left: 50%;
+right: 50%;
+margin-left: -50vw;
+margin-right: -50vw;
+overflow: hidden;
+display: flex;
+}
+
+.logo-ticker-track {
+display: flex;
+width: calc(150px * 16 + 3rem * 16);
+animation: slowScroll 35s linear infinite;
+gap: 3rem;
+padding: 1rem 0;
+}
+
+.logo-ticker-container:hover .logo-ticker-track {
+animation-play-state: paused;
+}
+
+.logo-box {
+width: 150px;
+height: 150px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #f7f7f7;
+border: 1px solid #e9e9e9;
+filter: grayscale(100%);
+opacity: 0.6;
+transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.logo-box:hover {
+filter: grayscale(0%);
+opacity: 0.9;
+}
+
+.logo-svg {
+width: 70%;
+height: 70%;
+}
+
+@keyframes slowScroll {
+0% { transform: translateX(0); }
+100% { transform: translateX(calc(-150px * 8 - 3rem * 8)); }
+}
+
+/* STREAMING_CHUNK: Styling editorial layout and manifesto layout grids /
+/ Enhanced Manifesto Style About Section */
+.about-section {
+display: grid;
+grid-template-columns: 1fr 1.3fr;
+gap: 6rem;
+padding-top: 4rem;
+padding-bottom: 4rem;
+align-items: start;
+scroll-margin-top: 4rem;
+}
+
+@media (max-width: 900px) {
+.about-section {
+grid-template-columns: 1fr;
+gap: 4rem;
+padding-bottom: 4rem;
+}
+}
+
+.manifesto-lead {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 400;
+font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+line-height: 1.25;
+color: #111111;
+}
+
+.manifesto-lead span {
+display: block;
+margin-top: 1.5rem;
+font-family: 'Rubik', sans-serif;
+font-weight: 700;
+font-style: normal;
+font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+text-transform: uppercase;
+letter-spacing: 0.02em;
+line-height: 1.4;
+}
+
+/* Narrative Column Styles */
+.about-content {
+font-family: 'Rubik', sans-serif;
+font-weight: 300;
+font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+letter-spacing: 0.01em;
+color: #222222;
+}
+
+.about-content p {
+margin-bottom: 2rem;
+}
+
+.framework-block {
+margin: 2.5rem 0;
+padding-left: 1.5rem;
+border-left: 1px solid #111111;
+}
+
+.framework-title {
+font-weight: 600;
+text-transform: uppercase;
+font-size: 0.95rem;
+letter-spacing: 0.05em;
+margin-bottom: 1rem;
+color: #111111;
+}
+
+.framework-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+margin-bottom: 1.5rem;
+}
+
+.framework-list li {
+position: relative;
+}
+
+.framework-list.first-list li::before {
+content: "→";
+position: absolute;
+left: -1.2rem;
+color: #111111;
+}
+
+.framework-list.last-list li::before {
+content: "×";
+position: absolute;
+left: -1.2rem;
+color: #888888;
+font-weight: 400;
+}
+
+/* STREAMING_CHUNK: Adjusting structural spacing for consequences and order markers /
+/ Order of Consequences Styling */
+.consequences-container {
+margin-top: 3rem;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.consequence-card {
+display: grid;
+grid-template-columns: 140px 1fr;
+gap: 1.5rem;
+align-items: start;
+}
+
+@media (max-width: 480px) {
+.consequence-card {
+grid-template-columns: 1fr;
+gap: 0.5rem;
+}
+}
+
+.consequence-num {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 400;
+font-size: clamp(1.3rem, 2vw, 1.6rem);
+line-height: 1.2;
+color: #111111;
+}
+
+.consequence-text {
+font-weight: 300;
+line-height: 1.4;
+padding-top: 0.2rem;
+}
+
+.consequence-card.threat .consequence-num,
+.consequence-card.threat .consequence-text {
+font-weight: 300;
+}
+
+/* Progressive Read More Engine */
+.read-more-target {
+max-height: 0;
+opacity: 0;
+overflow: hidden;
+transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease;
+}
+
+#read-more-toggle {
+display: none;
+}
+
+#read-more-toggle:checked ~ .read-more-target {
+max-height: 1500px;
+opacity: 1;
+transition: max-height 0.8s cubic-bezier(1, 0, 1, 0), opacity 0.6s ease;
+}
+
+.read-more-trigger {
+display: inline-block;
+margin-top: 1.5rem;
+}
+
+#read-more-toggle:checked ~ .read-more-trigger {
+display: none;
+}
+
+/* STREAMING_CHUNK: Setting up biography profiles and vector layout definitions /
+/ About Page - Profile Details Layout */
+.bio-section {
+padding: 2rem 0 8rem 0;
+}
+
+.bio-grid {
+display: grid;
+grid-template-columns: 1fr 2fr;
+gap: 4rem;
+margin-top: 2rem;
+align-items: start;
+}
+
+@media (max-width: 768px) {
+.bio-grid {
+grid-template-columns: 1fr;
+gap: 2.5rem;
+}
+}
+
+.bio-profile-card {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.avatar-frame {
+width: 100%;
+max-width: 280px;
+aspect-ratio: 1;
+background-color: #f3f3f3;
+border: 1px solid #e5e5e5;
+border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+padding: 1.5rem;
+}
+
+.avatar-svg {
+width: 100%;
+height: 100%;
+color: #111111;
+opacity: 0.85;
+}
+
+.avatar-svg .accent-star {
+color: #f70000;
+}
+
+.bio-name {
+font-family: 'Playfair', serif;
+font-style: italic;
+font-weight: 600;
+font-size: 1.8rem;
+color: #111111;
+line-height: 1.2;
+}
+
+.bio-title {
+font-family: 'Rubik', sans-serif;
+font-weight: 400;
+font-size: 0.95rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: #666666;
+margin-top: -0.5rem;
+}
+
+.bio-narrative {
+font-family: 'Rubik', sans-serif;
+font-weight: 300;
+font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+letter-spacing: 0.01em;
+color: #222222;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+}
+
+.bio-narrative p {
+line-height: 1.6;
+}

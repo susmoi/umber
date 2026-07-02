@@ -48,12 +48,33 @@
             }
         }
 
-        /* Header / Navigation */
+   /* Header / Navigation spanning full-width */
         header {
-            padding: 3rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(252, 252, 252, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+        }
+
+        /* Padded Inner Layout aligning to the page grid */
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: padding 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 1.5rem 1.5rem;
+            }
         }
 
         .logo {
@@ -96,13 +117,11 @@
             transition: transform 0.25s ease-out;
         }
 
-        .nav-link:hover,
-        .nav-link.active {
+        .nav-link:hover {
             color: #f70000;
         }
 
-        .nav-link:hover::after,
-        .nav-link.active::after {
+        .nav-link:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
@@ -226,11 +245,13 @@
     <div class="container">
         
         <header>
+        <div class="header-inner">
             <a href="index.html" class="logo">Umber</a>
             <nav class="nav-links">
                 <a href="about.html" class="nav-link active">About</a>
             </nav>
-        </header>
+        </div>
+    </header>
 
         <main>
             <section class="bio-section">

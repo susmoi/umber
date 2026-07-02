@@ -48,12 +48,33 @@
             }
         }
 
-        /* Header / Navigation */
+        /* Header / Navigation spanning full-width */
         header {
-            padding: 3rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(252, 252, 252, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+        }
+
+        /* Padded Inner Layout aligning to the page grid */
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: padding 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 1.5rem 1.5rem;
+            }
         }
 
         .logo {
@@ -104,7 +125,6 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-
         /* Hero Section */
         .hero {
             min-height: 70vh;
@@ -562,12 +582,14 @@
 
     <div class="container">
         
-        <header id="top">
+         <header>
+        <div class="header-inner">
             <a href="#top" class="logo">Umber</a>
             <nav class="nav-links">
                 <a href="about.html" class="nav-link">About</a>
             </nav>
-        </header>
+        </div>
+    </header>
 
         <main>
             <section class="hero">
@@ -803,42 +825,7 @@
 
             <div class="divider"></div>
 
-            <!-- Elegant Bio / About Profile Section with Lorem Ipsum Placeholder -->
-            <section class="bio-section" id="about">
-                <h2 class="section-header-display">About</h2>
-                
-                <div class="bio-grid">
-                    <div class="bio-profile-card">
-                        <div class="avatar-frame">
-                            <!-- Custom elegant abstract graphic representing a woman executive designer -->
-                            <svg class="avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="100" cy="100" r="90" stroke="#111111" stroke-width="1" stroke-dasharray="6,4"/>
-                                <path d="M60 145 C60 115, 140 115, 140 145" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="100" cy="85" r="24" stroke="#111111" stroke-width="2"/>
-                                <path d="M100 25 L100 45" stroke="#111111" stroke-width="1"/>
-                                <path d="M100 155 L100 175" stroke="#111111" stroke-width="1"/>
-                                <use href="#eight-pointed-star" x="85" y="5" width="30" height="30" style="color: #f70000;"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="bio-name">Liz Brown</h3>
-                            <p class="bio-title">Founder & Lead Coach</p>
-                        </div>
-                    </div>
-
-                    <div class="bio-narrative">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integrity, craft, and systemic action define the baseline of executive design leadership. Strategic navigation in the tech industry requires moving beyond standard UI workflows to cultivate absolute execution authority.
-                        </p>
-                        <p>
-                            Morbi convallis hendrerit magna, nec feugiat justo posuere eget. Sed lacinia finibus ex, a finibus eros pellentesque nec. Cras id congue nisi, eu sodales arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
-                        </p>
-                        <p>
-                            Umber Consulting was established to empower women in UX design and research with direct, tactical blueprints to claim structural leverage, command space, and rewrite their authority within modern engineering organizations.
-                        </p>
-                    </div>
-                </div>
-            </section>
+    
         </main>
     </div>
 

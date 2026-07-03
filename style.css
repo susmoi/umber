@@ -156,7 +156,7 @@ text-decoration: none;
 display: inline-block;
 }
 
-.calendly-btn {
+.primary-btn {
 display: inline-block;
 font-family: 'Rubik', sans-serif;
 font-weight: 500;
@@ -172,11 +172,11 @@ cursor: pointer;
 transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.calendly-btn:hover {
+.primary-btn:hover {
 background-color: #333333; /* Lighter black on hover */
 }
 
-.calendly-btn:active {
+.primary-btn:active {
 background-color: #444444; /* Even lighter black on click /
 transform: scale(0.98); / Visual responsive feedback */
 }
